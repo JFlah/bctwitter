@@ -1,5 +1,9 @@
 class TweetsController < ApplicationController
 
+	# Protect against non-logged in users tweeting
+	before_action :authenticate_user! # ! means raise error if not working
+
+
 	# Relates to new.html.erb file
 	# This controller relates to that view
 	# new creates instance of Tweet.rb (model)
@@ -10,7 +14,11 @@ class TweetsController < ApplicationController
 	# Creates a "tweet"
 	# Renders 'new'.html.erb page
 	def create
-		@tweet = Tweet.create(tweet_params)
+
+		@tweet = Tweet.new(tweet_params) # creates new instance of Tweet
+		@tweet.user = current_user
+		@tweet.save # saves it to the database
+
 		flash.now[:success] = "Tweet Created"
 		render 'new'
 	end
