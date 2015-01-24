@@ -24,4 +24,3 @@ class TweetsController < ApplicationController
 		params.require(:tweet).permit(:content)
 	end
 end
-
