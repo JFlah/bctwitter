@@ -1,5 +1,6 @@
 class Tweet < ActiveRecord::Base
 	belongs_to :user
+	validates :content, length: { maximum: 10 }
 end
 
 # models are singular
