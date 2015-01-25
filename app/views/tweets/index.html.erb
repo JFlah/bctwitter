@@ -4,7 +4,7 @@
 			<b><%= tweet.user.profile.profile_name %></b>:
 			<%= tweet.content %>
 			<br>
-			<b>Created at <%= tweet.created_at.strftime("%I:%M%p %m-%d-%Y ") %>
+			<b>Created at <%= tweet.created_at.strftime("%I:%M%p %m-%d-%Y ") %></b>
 			<% if current_user.following?(tweet.user) %>
 				<br>
 				<button type="button" class="btn btn-danger">
