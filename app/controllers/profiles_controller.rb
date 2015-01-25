@@ -10,16 +10,20 @@ class ProfilesController < ApplicationController
 
 		if @profile.save
 			flash[:success] = "Profile Created"
-			redirect_to profile_path # could find in rake routes
+			redirect_to profile_path(@profile.profile_name) # could find in rake routes
 		else
 			flash.now[:error] = "Please try again"
 			render 'new'
 		end
 	end
 
+	def show
+		@profile = Profile.where(profile_name: params[:id]).first
+	end
+
 	private
 
 	def profile_params
-		params.require(:profile).permit(:picture) # user can only submit pic
+		params.require(:profile).permit(:picture, :profile_name) # user can only submit pic
 	end
 end
