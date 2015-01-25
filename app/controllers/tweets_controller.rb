@@ -31,6 +31,7 @@ class TweetsController < ApplicationController
 	def index
 		 # {} is like do and end in 1 line
 		@tweets = Tweet.all.reject{ |tweet| tweet.user == current_user }
+		@relationship = Relationship.new
 	end
 
 	private
