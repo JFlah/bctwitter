@@ -26,6 +26,11 @@ class TweetsController < ApplicationController
 		render 'new'
 	end
 
+	def index
+		 # {} is like do and end in 1 line
+		@tweets = Tweet.all.reject{ |tweet| tweet.user == current_user }
+	end
+
 	private
 
 	# Must sanitize what's incoming in tweets
