@@ -1,0 +1,25 @@
+class ProfilesController < ApplicationController
+
+	def new
+		@profile = Profile.new
+	end
+
+	def create
+		@profile = Profile.new(profile_params)
+		@profile.user = current_user
+
+		if @profile.save
+			flash[:success] = "Profile Created"
+			redirect_to profile_path # could find in rake routes
+		else
+			flash.now[:error] = "Please try again"
+			render 'new'
+		end
+	end
+
+	private
+
+	def profile_params
+		params.require(:profile).permit(:picture) # user can only submit pic
+	end
+end

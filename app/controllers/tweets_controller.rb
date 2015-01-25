@@ -1,5 +1,7 @@
 class TweetsController < ApplicationController
 
+	# controllers are plural rails g controller
+
 	# Protect against non-logged in users tweeting
 	before_action :authenticate_user! # ! means raise error if not working
 
