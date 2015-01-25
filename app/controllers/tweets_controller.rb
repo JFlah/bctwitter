@@ -9,6 +9,7 @@ class TweetsController < ApplicationController
 	# new creates instance of Tweet.rb (model)
 	def new
 		@tweet = Tweet.new
+		@tweets = current_user.tweets
 	end
 
 	# Creates a "tweet"
@@ -18,6 +19,8 @@ class TweetsController < ApplicationController
 		@tweet = Tweet.new(tweet_params) # creates new instance of Tweet
 		@tweet.user = current_user
 		@tweet.save # saves it to the database
+
+		@tweets = current_user.tweets
 
 		flash.now[:success] = "Tweet Created"
 		render 'new'
